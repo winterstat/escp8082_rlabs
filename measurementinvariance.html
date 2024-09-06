@@ -119,6 +119,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/people.html" rel="" target="">
+ <span class="menu-text">People</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/talks.html" rel="" target="">
+ <span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">R Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-labs">    
+        <li>
+    <a class="dropdown-item" href="https://winterstat.github.io/escp8082_rlabs" rel="" target="">
+ <span class="dropdown-text">ESCP 8082 Foundations of Measurement</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.twitter.com/winterstat" rel="" target=""><i class="bi bi-twitter" role="img">
@@ -256,13 +285,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can download the R code used in this lab by right-clicking this link and selecting “Save Link As…” in the drop-down menu: <a href="data/measurementinvariance.R">measurementinvariance.R</a></p>
+</div>
+</div>
 <section id="loading-the-r-packages" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="loading-the-r-packages"><span class="header-section-number">6.1</span> Loading the R packages</h2>
-<p>In this lab, we will use the lavaan, semTools, and ggplot2 packages, which we have already installed in earlier labs. So, we can simply get those packages from the R package library:</p>
+<p>In this lab, we will use the lavaan and semTools packages, which we have already installed in earlier labs. So, we can simply get those packages from the R package library:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading-data-into-our-environment" class="level2" data-number="6.2">

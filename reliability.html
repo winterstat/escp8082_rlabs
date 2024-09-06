@@ -120,6 +120,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/people.html" rel="" target="">
+ <span class="menu-text">People</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://winterstat.github.io/talks.html" rel="" target="">
+ <span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">R Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-labs">    
+        <li>
+    <a class="dropdown-item" href="https://winterstat.github.io/escp8082_rlabs" rel="" target="">
+ <span class="dropdown-text">ESCP 8082 Foundations of Measurement</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.twitter.com/winterstat" rel="" target=""><i class="bi bi-twitter" role="img">
@@ -246,6 +275,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can download the R code used in this lab by right-clicking this link and selecting “Save Link As…” in the drop-down menu: <a href="data/reliability.R">reliability.R</a></p>
+</div>
+</div>
 <section id="installing-and-loading-the-r-packages" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="installing-and-loading-the-r-packages"><span class="header-section-number">5.1</span> Installing and Loading the R packages</h2>
 <p>In this lab we will be using a new package: <code>MBESS</code> (Methods for the Behavioral, Educational, and Social Sciences), which includes a function that calculates coefficient omega and (more importantly) its confidence interval. Although other packages can also estimate coefficient omega, they often do not provide a confidence interval.</p>
