@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-and-loading-the-r-packages" id="toc-installing-and-loading-the-r-packages" class="nav-link active" data-scroll-target="#installing-and-loading-the-r-packages"><span class="header-section-number">5.1</span> Installing and Loading the R packages</a></li>
+  <li><a href="#loading-r-packages" id="toc-loading-r-packages" class="nav-link active" data-scroll-target="#loading-r-packages"><span class="header-section-number">5.1</span> Loading R packages</a></li>
   <li><a href="#loading-data-into-our-environment" id="toc-loading-data-into-our-environment" class="nav-link" data-scroll-target="#loading-data-into-our-environment"><span class="header-section-number">5.2</span> Loading data into our environment</a></li>
   <li><a href="#are-the-items-tau-equivalent" id="toc-are-the-items-tau-equivalent" class="nav-link" data-scroll-target="#are-the-items-tau-equivalent"><span class="header-section-number">5.3</span> Are the items tau-equivalent?</a></li>
   <li><a href="#coefficient-omega" id="toc-coefficient-omega" class="nav-link" data-scroll-target="#coefficient-omega"><span class="header-section-number">5.4</span> Coefficient Omega</a></li>
@@ -288,40 +288,23 @@ Note
 <p>You can download the R code used in this lab by right-clicking this link and selecting “Save Link As…” in the drop-down menu: <a href="https://winterstat.github.io/escp8082_rlabs/data/reliability.R">reliability.R</a></p>
 </div>
 </div>
-<section id="installing-and-loading-the-r-packages" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="installing-and-loading-the-r-packages"><span class="header-section-number">5.1</span> Installing and Loading the R packages</h2>
-<p>In this lab we will be using a new package: <code>MBESS</code> (Methods for the Behavioral, Educational, and Social Sciences), which includes a function that calculates coefficient omega and (more importantly) its confidence interval. Although other packages can also estimate coefficient omega, they often do not provide a confidence interval.</p>
+<section id="loading-r-packages" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="loading-r-packages"><span class="header-section-number">5.1</span> Loading R packages</h2>
+<p>In this lab we will be using a new package: MBESS (Methods for the Behavioral, Educational, and Social Sciences), which includes a function that calculates coefficient omega and (more importantly) its confidence interval. Although other packages can also estimate coefficient omega, they often do not provide a confidence interval. We will also use the psych package. We can simply get those packages from the R package library:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"MBESS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you experience issues installing this package on macOS, you likely need to install a few additional tools. Go to this page to download and install those tools: <a href="https://mac.r-project.org/tools/">Compile Tools for macOS</a>.</p>
-</div>
-</div>
-<p>In this lab, we will also use the <code>psych</code> package, which we have already installed in earlier labs. So, we can simply get those packages from the R package library:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MBESS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MBESS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading-data-into-our-environment" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="loading-data-into-our-environment"><span class="header-section-number">5.2</span> Loading data into our environment</h2>
 <p>For this lab, we will use a dataset that is included in the <code>psych</code> package, so we can use the <code>data()</code> function like we did before:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"attitude"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"attitude"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These data come from a survey of clerical employees of a large financial organization. Each variable represents a rating (on the percentage scale) of how well the company performs on that item’s topic (e.g., complaints).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           vars  n  mean    sd median trimmed   mad min max range  skew
 rating        1 30 64.63 12.17   65.5   65.21 10.38  40  85    45 -0.36
@@ -346,7 +329,7 @@ advance        0.47 1.88</code></pre>
 <h2 data-number="5.3" class="anchored" data-anchor-id="are-the-items-tau-equivalent"><span class="header-section-number">5.3</span> Are the items tau-equivalent?</h2>
 <p>When determining which internal consistency coefficient may be most appropriate for our measurement instrument, we can look at whether the items are tau equivalent (equivalent factor loadings for all items). A simple way to do so is the run a unidimensional EFA and inspect the factor loadings:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(attitude)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(attitude)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -370,9 +353,9 @@ Proportion Var 0.469</code></pre>
 <h2 data-number="5.4" class="anchored" data-anchor-id="coefficient-omega"><span class="header-section-number">5.4</span> Coefficient Omega</h2>
 <p>We will use the <code>MBESS</code> package to compute coefficient omega:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci.reliability</span>(attitude, <span class="at">type =</span> <span class="st">"omega"</span>, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">interval.type =</span> <span class="st">"mlr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci.reliability</span>(attitude, <span class="at">type =</span> <span class="st">"omega"</span>, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">interval.type =</span> <span class="st">"mlr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$est
 [1] 0.8563268
@@ -399,12 +382,12 @@ $interval.type
 <p>How internally consistent are the scores on this measurement instrument with this sample? Here is how you’d report the reliability: Internal consistency of the Attitudes survey was good, <span class="math inline">\(\omega\)</span> = .86 (SE = .05), 95% CI = [.77, .95].</p>
 <p>We can use the estimated internal consistency to get an estimate of the overall standard error of measurement (sem):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the SD of the attitude sum scores</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="fu">rowSums</span>(attitude))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute sem: sd_x * sqrt(1 - reliability)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sem <span class="ot">&lt;-</span> sd_x <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.8563268</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>sem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the SD of the attitude sum scores</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="fu">rowSums</span>(attitude))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute sem: sd_x * sqrt(1 - reliability)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sem <span class="ot">&lt;-</span> sd_x <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.8563268</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>sem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21.88914</code></pre>
 </div>
@@ -415,14 +398,14 @@ $interval.type
 <h2 data-number="5.5" class="anchored" data-anchor-id="cronbachs-alpha"><span class="header-section-number">5.5</span> Cronbach’s Alpha</h2>
 <p>We will use the <code>psych</code> package to compute Cronbach’s alpha.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha <span class="ot">&lt;-</span> <span class="fu">alpha</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha <span class="ot">&lt;-</span> <span class="fu">alpha</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Number of categories should be increased  in order to count frequencies. </code></pre>
 </div>
 </div>
 <p>This function returns a bunch of output that we can look at, starting with some basic summary statistics:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(attitude_alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(attitude_alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Reliability analysis   
@@ -432,7 +415,7 @@ Reliability analysis
 </div>
 <p>We can also look at how Cronbach’s alpha would change if specific items were removed from the instrument. This can help us identify items that are measured with more measurement error:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha<span class="sc">$</span>alpha.drop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha<span class="sc">$</span>alpha.drop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           raw_alpha std.alpha   G6(smc) average_r      S/N   alpha se
 rating     0.8097602 0.8081915 0.8317701 0.4125442 4.213534 0.05244967
@@ -454,7 +437,7 @@ advance    0.04811380 0.4933310</code></pre>
 </div>
 <p>And finally, we can find the 95% CI:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha<span class="sc">$</span>feldt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha<span class="sc">$</span>feldt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    95% confidence boundaries (Feldt)
@@ -465,9 +448,9 @@ advance    0.04811380 0.4933310</code></pre>
 <p>Here is how you’d report the internal consistency using Cronbach’s alpha: Internal consistency of the Attitudes survey was good, <span class="math inline">\(\alpha\)</span> = .84 (SE = .04), 95% CI = [.74, .92].</p>
 <p>Note that you can also use the MBESS package to compute Cronbach’s alpha:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci.reliability</span>(attitude, <span class="at">type =</span> <span class="st">"alpha"</span>, </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">interval.type =</span> <span class="st">"feldt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci.reliability</span>(attitude, <span class="at">type =</span> <span class="st">"alpha"</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">interval.type =</span> <span class="st">"feldt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$est
 [1] 0.8431428
@@ -496,7 +479,7 @@ $interval.type
 <h2 data-number="5.6" class="anchored" data-anchor-id="split-half-reliability"><span class="header-section-number">5.6</span> Split-Half Reliability</h2>
 <p>We can also use the <code>psych</code> package to estimate the split-half reliability. This function returns (among some other things) the minimum, maximum, and average split-half reliability. Ideally, we want those numbers to be close together and close to 1. If the minimum and maximum are far apart, it indicates that only some specific splits can be considered essentially parallel.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">splitHalf</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">splitHalf</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Split half reliabilities  
 Call: splitHalf(r = attitude)
@@ -516,31 +499,31 @@ Average interitem r =  0.43  with median =  0.45</code></pre>
 <p>As discussed in class, when two measures are not perfectly reliable, then the correlation between them will be biased, or attenuated (i.e., lower than it should be). In this part of the lab, we’ll see this phenomenon in action.</p>
 <p>First, we’ll split the attitude survey in two parts, so we can look at the correlation between the two parts. In Assignment 6, you will do something similar, but for two different surveys. However, you will still need to split the Assignment 6 data frame into two parts, so the code below is still relevant.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split attitude data into two parts </span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for demonstration</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>part1 <span class="ot">&lt;-</span> attitude[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)]</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>part2 <span class="ot">&lt;-</span> attitude[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split attitude data into two parts </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for demonstration</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>part1 <span class="ot">&lt;-</span> attitude[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>part2 <span class="ot">&lt;-</span> attitude[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To compute a correlation between the two tests, we need to compute each participant’s sumscore across the items. We can use a function called <code>rowSums()</code> to do this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summed scores of </span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each part using rowSums()</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sumscore1 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(part1)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>sumscore2 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(part2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summed scores of </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each part using rowSums()</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>sumscore1 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(part1)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sumscore2 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(part2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we can compute the observed correlation of the summed scores:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute correlation between summed scores</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>obscor <span class="ot">&lt;-</span> <span class="fu">cor</span>(sumscore1,sumscore2)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>obscor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute correlation between summed scores</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>obscor <span class="ot">&lt;-</span> <span class="fu">cor</span>(sumscore1,sumscore2)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>obscor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5438004</code></pre>
 </div>
 </div>
 <p>But we already know from our earlier assessment above that the full attitude test is not perfectly reliable. Now we also need to see if these two parts are perfectly reliable or not. To decide between using Cronbach’s alpha and coefficient omega, we need to assess the (lack of) tau equivalence of the two parts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#examine tau equivalence</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(part1)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#examine tau equivalence</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(part1)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -554,7 +537,7 @@ learning   0.713
 SS loadings    2.434
 Proportion Var 0.608</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(part2)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(part2)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -570,24 +553,24 @@ Proportion Var 0.460</code></pre>
 </div>
 <p>These loadings do not look tau equivalent, so we will use coefficient omega to quantify the internal consistency. This time, we’re using the <code>$</code> operator to extract just the omega estimate (<code>est</code>) from the <code>ci.reliability()</code> output:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#record omega reliability estimates of both parts</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>omega1 <span class="ot">&lt;-</span> <span class="fu">ci.reliability</span>(part1)<span class="sc">$</span>est</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>omega2 <span class="ot">&lt;-</span> <span class="fu">ci.reliability</span>(part2)<span class="sc">$</span>est</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>omega1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#record omega reliability estimates of both parts</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>omega1 <span class="ot">&lt;-</span> <span class="fu">ci.reliability</span>(part1)<span class="sc">$</span>est</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>omega2 <span class="ot">&lt;-</span> <span class="fu">ci.reliability</span>(part2)<span class="sc">$</span>est</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>omega1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8615586</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>omega2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>omega2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7097988</code></pre>
 </div>
 </div>
 <p>The omegas above show that the two tests are not perfectly reliable, so it’s important to disattenuate the observed correlation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Disattenuated correlation between tests</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>discor <span class="ot">&lt;-</span> obscor <span class="sc">/</span> <span class="fu">sqrt</span>(omega1 <span class="sc">*</span> omega2)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>discor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Disattenuated correlation between tests</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>discor <span class="ot">&lt;-</span> obscor <span class="sc">/</span> <span class="fu">sqrt</span>(omega1 <span class="sc">*</span> omega2)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>discor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6953916</code></pre>
 </div>

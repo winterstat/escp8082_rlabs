@@ -74,7 +74,7 @@
     "href": "gettingstarted.html#install-necessary-packages",
     "title": "1  Getting Started",
     "section": "1.2 Install Necessary Packages",
-    "text": "1.2 Install Necessary Packages\nThroughout these labs, we will rely on a set of R packages, which add functionality to the base R language (like expansion sets of a game). These packages are typically available through CRAN or GitHub. You only need to install packages once (but you may need to update them!), so lets do that now.\nWe will start with a set of packages that we can download from CRAN, using the built-in install.packages function:\n\ninstall.packages(c(\"rio\", \"ggplot2\", \"psych\",\"correlation\", \n                   \"GPArotation\", \"lavaan\", \"MBESS\", \n                    \"devtools\"))\n\nRunning the code above will install:\n\nrio: makes importing lots of different data file types easy.\nggplot2: a versatile visualization package.\npsych: will help us cover topics such as exploratory factor analysis and reliability.\ncorrelation: includes fancy correlation coeficients\nGPArotation: helps with exploratory factor analysis\nlavaan: the main structural equation modeling package we will use to cover confirmatory factor analysis and measurement invariance.\nMBESS: includes additional internal consistency measures\ndevtools: a package that helps us install packages that are available on GitHub.\n\nIn addition to these main packages, R might also install additional packages that are needed for these 8 packages to work (so-called dependents).\nNext, you will install a package, semTools from GitHub. Due to a bug in the version of this package on CRAN, we need to use the unofficial, development version of the package. You may need to uncomment (remove the #) the first line of code and execute both lines for this to work. In some cases, the download of the semTools package is too slow and results in an error because the R session times out.\n\n# options(timeout = max(300, getOption(\"timeout\")))\ndevtools::install_github(\"simsem/semTools/semTools\")"
+    "text": "1.2 Install Necessary Packages\nThroughout these labs, we will rely on a set of R packages, which add functionality to the base R language (like expansion sets of a game). These packages are typically available through CRAN or GitHub. You only need to install packages once (but you may need to update them!), so lets do that now.\nWe will start with a set of packages that we can download from CRAN, using the built-in install.packages function:\n\ninstall.packages(c(\"rio\", \"ggplot2\", \"psych\",\"correlation\", \n                   \"GPArotation\", \"lavaan\", \"MBESS\", \n                    \"devtools\"))\n\nRunning the code above will install:\n\nrio: makes importing lots of different data file types easy.\nggplot2: a versatile visualization package.\npsych: will help us cover topics such as exploratory factor analysis and reliability.\ncorrelation: includes fancy correlation coeficients\nGPArotation: helps with exploratory factor analysis\nlavaan: the main structural equation modeling package we will use to cover confirmatory factor analysis and measurement invariance.\nMBESS: includes additional internal consistency measures\ndevtools: a package that helps us install packages that are available on GitHub.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you experience issues installing the MBESS package on macOS, you likely need to install a few additional tools. Go to this page to download and install those tools: Compile Tools for macOS.\n\n\nIn addition to these main packages, R might also install additional packages that are needed for these 8 packages to work (so-called dependents).\nNext, you will install a package, semTools from GitHub. Due to a bug in the version of this package on CRAN, we need to use the unofficial, development version of the package. You may need to uncomment (remove the #) the first line of code and execute both lines for this to work. In some cases, the download of the semTools package is too slow and results in an error because the R session times out.\n\n# options(timeout = max(300, getOption(\"timeout\")))\ndevtools::install_github(\"simsem/semTools/semTools\")"
   },
   {
     "objectID": "gettingstarted.html#data-used-in-the-r-labs",
@@ -151,7 +151,7 @@
     "href": "confirmatoryfactoranalysis.html#loading-r-packages",
     "title": "3  Confirmatory Factor Analysis",
     "section": "3.1 Loading R Packages",
-    "text": "3.1 Loading R Packages\nRemember, you only need to install a package once. But if you want to use the functionality of a package, you will need to “load” the package into your environment. To do that for lavaan (and the psych package, which we’ll also use in this lab), we use the library() function:\n\nlibrary(lavaan)\nlibrary(semTools)\nlibrary(psych)"
+    "text": "3.1 Loading R Packages\nRemember, you only need to install a package once. But if you want to use the functionality of a package, you will need to “load” the package into your environment. To do that for lavaan (and the semTools and psych packages, which we’ll also use in this lab), we use the library() function:\n\nlibrary(lavaan)\nlibrary(semTools)\nlibrary(psych)"
   },
   {
     "objectID": "confirmatoryfactoranalysis.html#loading-data-into-our-environment",
@@ -214,7 +214,7 @@
     "href": "exploratoryfactoranalysis.html#loading-r-packages",
     "title": "4  Exploratory Factor Analysis",
     "section": "4.1 Loading R Packages",
-    "text": "4.1 Loading R Packages\nRemember, you only need to install a package once. But if you want to use the functionality of a package, you will need to “load” the package into your environment. To do that for lavaan (and the psych package, which we’ll also use in this lab), we use the library() function:\n\nlibrary(lavaan)\nlibrary(psych)\nlibrary(GPArotation)"
+    "text": "4.1 Loading R Packages\nRemember, you only need to install a package once. But if you want to use the functionality of a package, you will need to “load” the package into your environment. To do that for lavaan (and the psych and GPArotation packages, which we’ll also use in this lab), we use the library() function:\n\nlibrary(lavaan)\nlibrary(psych)\nlibrary(GPArotation)"
   },
   {
     "objectID": "exploratoryfactoranalysis.html#loading-data-into-our-environment",
@@ -327,5 +327,19 @@
     "title": "ESCP 8082 R Labs",
     "section": "",
     "text": "Preface\nWelcome to the R Labs page for ESCP 8082: Foundations of Educational and Psychological Measurement (University of Missouri). Although these labs were created for use in a classroom setting, they are available to all who happen to find them and find use in them. Please don’t hesitate to let me know about any bugs or errors you notice, by contacting me at sdwinter@missouri.edu\nYou can also download a PDF version of these R Labs. At the start of each specific R lab, you will also find a link to download just the R file with all the code used in the lab."
+  },
+  {
+    "objectID": "reliability.html#loading-r-packages",
+    "href": "reliability.html#loading-r-packages",
+    "title": "5  Reliability",
+    "section": "5.1 Loading R packages",
+    "text": "5.1 Loading R packages\nIn this lab we will be using a new package: MBESS (Methods for the Behavioral, Educational, and Social Sciences), which includes a function that calculates coefficient omega and (more importantly) its confidence interval. Although other packages can also estimate coefficient omega, they often do not provide a confidence interval. We will also use the psych package. We can simply get those packages from the R package library:\n\nlibrary(psych)\nlibrary(MBESS)"
+  },
+  {
+    "objectID": "measurementinvariance.html#loading-r-packages",
+    "href": "measurementinvariance.html#loading-r-packages",
+    "title": "6  Measurement Invariance",
+    "section": "6.1 Loading R packages",
+    "text": "6.1 Loading R packages\nIn this lab, we will use the lavaan and semTools packages, which we have already installed in earlier labs. So, we can simply get those packages from the R package library:\n\nlibrary(lavaan)\nlibrary(semTools)"
   }
 ]
