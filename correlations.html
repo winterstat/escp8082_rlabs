@@ -691,32 +691,43 @@ sample estimates:
 </div>
 </div>
 <p>What do the separate correlation estimates tell us about the likely association between temperature and ice cream sales?</p>
+<p>We can also use a non-parametric type of correlation, such as a distance correlation coefficient, to quantify the association between temperature and ice cream sales across the full range of temperatures. This coefficient ranges betwen 0 and 1 (so not -1 and 1), with 0 indicating no association between the variables and 1 indicating a perfect (but potentially non-linear) relationship between the variables. Thus, this value only tells you something about the strength of the association. After you compute this correlation, you need to use the scatter plot to describe the actual association.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(tempicecurve, <span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="at">method =</span> <span class="st">"distance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parameter1 | Parameter2 |    r |        95% CI | t(188) |      p
+----------------------------------------------------------------
+x1         |         x2 | 0.14 | [-0.31, 0.54] |   2.01 | 0.023*
+
+Observations: 21</code></pre>
+</div>
+</div>
 </section>
 <section id="alternatives-to-pearsons-r" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="alternatives-to-pearsons-r"><span class="header-section-number">2.8</span> Alternatives to Pearson’s <em>r</em></h2>
 <p>In the above example, we were able to split the data in half to appropriately estimate two Pearson’s <em>r</em> for two linear associations. But there are other alternative’s to Pearson’s <em>r</em> that help with other challenges.</p>
 <section id="correlation-estimate-for-data-with-outliers" class="level3">
 <h3 class="anchored" data-anchor-id="correlation-estimate-for-data-with-outliers">Correlation Estimate for Data with Outliers</h3>
-<p>We need to import some more (fake) data:</p>
+<p>We need to import some more (fake) data, which you can download here: <a href="https://winterstat.github.io/escp8082_rlabs/data/SATscores_outlier.csv">data/SATscores_outlier.csv</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>SATscores_out <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/SATscores_outlier.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>SATscores_out <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/SATscores_outlier.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This data frame contains two variables, <code>verbal</code> and <code>quant</code>, which reflect 11 participants’ verbal and quantitative SAT scores.</p>
 <p>Below is code for visualizing the <code>SATscores_out</code> data, which reveals that there is an outlier.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(SATscores_out<span class="sc">$</span>verbal, <span class="at">xlab =</span> <span class="st">"Verbal"</span>, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(SATscores_out<span class="sc">$</span>verbal, <span class="at">xlab =</span> <span class="st">"Verbal"</span>, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/outlier1-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(SATscores_out<span class="sc">$</span>quant, <span class="at">xlab =</span> <span class="st">"Quant"</span>, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(SATscores_out<span class="sc">$</span>quant, <span class="at">xlab =</span> <span class="st">"Quant"</span>, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/outlier1-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can compute the biweight and Winsorized correlation coefficients and compare those to the Pearson correlation coefficient:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(SATscores_out<span class="sc">$</span>verbal, SATscores_out<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(SATscores_out<span class="sc">$</span>verbal, SATscores_out<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -730,8 +741,8 @@ sample estimates:
       cor 
 0.7856319 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># biweight</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_out, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"biweight"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># biweight</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_out, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"biweight"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |    r |        95% CI | t(9) |     p
 -------------------------------------------------------------
@@ -739,8 +750,8 @@ verbal     |      quant | 0.37 | [-0.29, 0.79] | 1.20 | 0.260
 
 Observations: 11</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsorized</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_out, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">winsorize =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Winsorized</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_out, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">winsorize =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |    r |        95% CI | t(9) |     p
 -------------------------------------------------------------
@@ -755,12 +766,12 @@ Observations: 11</code></pre>
 <h3 class="anchored" data-anchor-id="correlation-estimate-for-non-normal-data">Correlation Estimate for Non-normal Data</h3>
 <p>Even without the outlier, the SAT scores distributions looked somewhat skewed. For this example, we will remove the outlier and focus solely on the non-normality of the two variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>SATscores <span class="ot">&lt;-</span> SATscores_out[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>SATscores <span class="ot">&lt;-</span> SATscores_out[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Below is code to test if your variables are approximately Normally distributed. Remember, we’re testing the Null hypothesis that the data are similar to a Normal distribution. If the p-value is &lt; .05, we reject this Null hypothesis and have to conclude that the data are probably not normally distributed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shapiro Wilk test of normality.</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(SATscores<span class="sc">$</span>verbal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shapiro Wilk test of normality.</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(SATscores<span class="sc">$</span>verbal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -768,7 +779,7 @@ Observations: 11</code></pre>
 data:  SATscores$verbal
 W = 0.82541, p-value = 0.02945</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(SATscores<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(SATscores<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -779,8 +790,8 @@ W = 0.82188, p-value = 0.02671</code></pre>
 </div>
 <p>We can compare Spearman’s <span class="math inline">\(\rho\)</span> (Rho) and Kendall’s <span class="math inline">\(\tau\)</span> (Tau) to Pearson’s correlation coefficient:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(SATscores<span class="sc">$</span>verbal, SATscores<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(SATscores<span class="sc">$</span>verbal, SATscores<span class="sc">$</span>quant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -794,9 +805,9 @@ sample estimates:
       cor 
 0.4998894 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spearman (you can use cor.test or cor_test)</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(SATscores$verbal, SATscores$quant, method = "spearman")</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spearman (you can use cor.test or cor_test)</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(SATscores$verbal, SATscores$quant, method = "spearman")</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |  rho |       95% CI |     S |      p
 --------------------------------------------------------------
@@ -804,9 +815,9 @@ verbal     |      quant | 0.67 | [0.05, 0.92] | 54.00 | 0.033*
 
 Observations: 10</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kendall (you can use cor.test or cor_test)</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cor.test(SATscores$verbal, SATscores$quant, method = "kendall")</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"kendall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kendall (you can use cor.test or cor_test)</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cor.test(SATscores$verbal, SATscores$quant, method = "kendall")</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"kendall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |  tau |       95% CI |    z |      p
 -------------------------------------------------------------
@@ -819,14 +830,14 @@ Observations: 10</code></pre>
 <p>We can also compare the raw SAT data to the ranked SAT data to see that the correlation estimate is equivalent when using Kendall/Spearman, but that it is different when using Pearson.</p>
 <p>We first create the rank-ordered variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>SATscores_rank <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">verbal =</span> <span class="fu">rank</span>(SATscores<span class="sc">$</span>verbal),</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">quant =</span> <span class="fu">rank</span>(SATscores<span class="sc">$</span>quant))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>SATscores_rank <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">verbal =</span> <span class="fu">rank</span>(SATscores<span class="sc">$</span>verbal),</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">quant =</span> <span class="fu">rank</span>(SATscores<span class="sc">$</span>quant))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we look at the Pearson’s <em>r</em> when based on the raw or ranked data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Camparing Pearson correlation coefficients </span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (now using the cor_test function)</span></span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Camparing Pearson correlation coefficients </span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (now using the cor_test function)</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |    r |        95% CI | t(8) |     p
 -------------------------------------------------------------
@@ -834,7 +845,7 @@ verbal     |      quant | 0.50 | [-0.19, 0.86] | 1.63 | 0.141
 
 Observations: 10</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_rank, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_rank, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |    r |       95% CI | t(8) |      p
 -------------------------------------------------------------
@@ -845,8 +856,8 @@ Observations: 10</code></pre>
 </div>
 <p>Now compare those results to what happens when we use Spearman’s <span class="math inline">\(rho\)</span> (Rho):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparing Spearman correlation coefficients</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparing Spearman correlation coefficients</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |  rho |       95% CI |     S |      p
 --------------------------------------------------------------
@@ -854,7 +865,7 @@ verbal     |      quant | 0.67 | [0.05, 0.92] | 54.00 | 0.033*
 
 Observations: 10</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_rank, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(SATscores_rank, <span class="st">"verbal"</span>, <span class="st">"quant"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |  rho |       95% CI |     S |      p
 --------------------------------------------------------------
@@ -866,18 +877,18 @@ Observations: 10</code></pre>
 </section>
 <section id="correlation-estimate-for-ordinal-categorical-data" class="level3">
 <h3 class="anchored" data-anchor-id="correlation-estimate-for-ordinal-categorical-data">Correlation Estimate for (Ordinal) Categorical Data</h3>
-<p>For this example, we will import some ordinal data on quality of life (QoL) and health:</p>
+<p>For this example, we will import some ordinal data on quality of life (QoL) and health, which you can download here: <a href="https://winterstat.github.io/escp8082_rlabs/data/QoLHealth.csv">data/QoLHealth.csv</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>QoLHealth <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/QoLHealth.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>QoLHealth <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/QoLHealth.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The variables are imported as strings, so we need to tell R what the order of the possible values is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>health <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>health, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Poor"</span>, <span class="st">"Moderate"</span>,<span class="st">"Good"</span>), <span class="at">ordered =</span> T)</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>QoL <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>QoL, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">ordered =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>health <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>health, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Poor"</span>, <span class="st">"Moderate"</span>,<span class="st">"Good"</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>QoL <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>QoL, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">ordered =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The cross-table below shows the categorical nature of these variables, where each only takes on 3 values that may be ordinal but are not neccesarily equally spaced:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(QoLHealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(QoLHealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          QoL
 health     Low Medium High
@@ -888,7 +899,7 @@ health     Low Medium High
 </div>
 <p>We can use the polychoric correlation coefficient for the ordinal QoL and Health data (here we use the <code>correlation</code> package):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(QoLHealth, <span class="st">"health"</span>, <span class="st">"QoL"</span>, <span class="at">method =</span> <span class="st">"polychoric"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor_test</span>(QoLHealth, <span class="st">"health"</span>, <span class="st">"QoL"</span>, <span class="at">method =</span> <span class="st">"polychoric"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter1 | Parameter2 |  rho |       95% CI | t(225) |         p
 ------------------------------------------------------------------
@@ -899,7 +910,7 @@ Observations: 227</code></pre>
 </div>
 <p>There is also an option in the <code>psych</code> package to compute the polychoric correlation coefficient, which uses the cross-table as input:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polychoric</span>(<span class="fu">table</span>(QoLHealth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polychoric</span>(<span class="fu">table</span>(QoLHealth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "You seem to have a table, I will return just one correlation."</code></pre>
 </div>
