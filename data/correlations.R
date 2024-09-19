@@ -160,6 +160,10 @@ cor.test(tempicecurve1$x1, tempicecurve1$x2)
 tempicecurve2 <- subset(tempicecurve, group == 2)
 cor.test(tempicecurve2$x1, tempicecurve2$x2)
 
+# Distance
+cor_test(tempicecurve, "x1", "x2", method = "distance")
+
+
 SATscores_out <- rio::import("data/SATscores_outlier.csv")
 
 hist(SATscores_out$verbal, xlab = "Verbal", main = "")
