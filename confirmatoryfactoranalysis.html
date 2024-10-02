@@ -488,7 +488,7 @@ R-Square:
 </div>
 <section id="model-fit" class="level3">
 <h3 class="anchored" data-anchor-id="model-fit">Model Fit</h3>
-<p>The output above is great, but it can be a lot. To look at just the fit indices, you can also use <code>fitMeasures()</code>. This function will return <em>a ton</em> of fit indices if you do not include the <code>fit.measures</code> argument. Here, we select the main indices that we’re intereted in:</p>
+<p>The output above is great, but it can be a lot. To look at just the fit indices, you can also use <code>fitMeasures()</code>. This function will return <em>a ton</em> of fit indices if you do not include the <code>fit.measures</code> argument. Here, we select the main indices that we’re interested in:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitMeasures</span>(fit1, </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">"chisq"</span>, <span class="st">"df"</span>, <span class="st">"pvalue"</span>,</span>
@@ -531,7 +531,7 @@ Standardized Root Mean Square Residual:
   SRMR                                           0.065</code></pre>
 </div>
 </div>
-<p>Based on all fit indices, the fit of this CFA is poor. First, the Chi-square statistic is signifiicant, indicating poor fit. Sometimes, with larger sample sizes, a significant Chi-square simply means that there are a lot of small, trivial misspecifications. However, if we look at the CFI, TLI, RMSEA, and SRMR values and compare them to their suggested cutoff values (.95, .95, .06, .08), they also indicate that the model fits the data poorly.</p>
+<p>Based on all fit indices, the fit of this CFA is poor. First, the Chi-square statistic is significant, indicating poor fit. Sometimes, with larger sample sizes, a significant Chi-square simply means that there are a lot of small, trivial misspecifications. However, if we look at the CFI, TLI, RMSEA, and SRMR values and compare them to their suggested cutoff values (.95, .95, .06, .08), they also indicate that the model fits the data poorly.</p>
 </section>
 <section id="parameter-estimates" class="level3">
 <h3 class="anchored" data-anchor-id="parameter-estimates">Parameter Estimates</h3>
@@ -599,7 +599,7 @@ Variances:
 </div>
 <section id="model-re-specification" class="level3">
 <h3 class="anchored" data-anchor-id="model-re-specification">Model Re-Specification</h3>
-<p>We can use the information from the modification indices to re-specify our model. The largest index is for adding a factor loading that goes from the visual factor to x9 (<code>mi = 36.41</code>), which is “Speeded discrimination straight and curved capitals”. From the description of x9, we can see that this test does involve visual ability as well, so I feel that we can justify this modification. This means that the item x9 now loads onto two factors. The second loading is also called a cross loading. By adding this cross loadings, we’re making the interpretation of the visual and speed factors more complex.</p>
+<p>We can use the information from the modification indices to re-specify our model. The largest index is for adding a factor loading that goes from the visual factor to x9 (<code>mi = 36.41</code>), which is “Speeded discrimination straight and curved capitals”. From the description of x9, we can see that this test does involve visual ability as well, so I feel that we can justify this modification. This means that the item x9 now loads onto two factors. The second loading is also called a cross loading. By adding this cross loading, we’re making the interpretation of the visual and speed factors more complex.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reanalysis</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>HSmodel2 <span class="ot">&lt;-</span> <span class="st">"visual  =~ x1 + x2 + x3 + x9</span></span>
@@ -758,7 +758,7 @@ fit1 85.306  24   .000 .092  .931  .896  .065  7517.490  7595.339
 fit1 - fit2  1 0.027 -0.036 -0.052 0.02 30.923 27.216</code></pre>
 </div>
 </div>
-<p>The output of this function includes a comparison of fit based on the model Chi-square: the Chi-square difference test. If this test is significant, then it means that the model with fewer estimated parameters (here <code>fit1</code>) fits the data significantly <em>worse</em> than the model with more estimated parameters (here <code>fit2</code>), so we should select the model with more parameters (<code>fit2</code>). If this test is not significant, then it means that the additional parameters of <code>fit2</code> did not improve fit enough to result in a <em>better</em> model fit than that of <code>fit1</code>, which means that we should stick with the simpler model (<code>fit1</code>). What do the resuts above tell us?</p>
+<p>The output of this function includes a comparison of fit based on the model Chi-square: the Chi-square difference test. If this test is significant, then it means that the model with fewer estimated parameters (here <code>fit1</code>) fits the data significantly <em>worse</em> than the model with more estimated parameters (here <code>fit2</code>), so we should select the model with more parameters (<code>fit2</code>). If this test is not significant, then it means that the additional parameters of <code>fit2</code> did not improve fit enough to result in a <em>better</em> model fit than that of <code>fit1</code>, which means that we should stick with the simpler model (<code>fit1</code>). What do the results above tell us?</p>
 <p>The output also includes comparisons of the relative fit indices (AIC and BIC). Remember: lower values indicate better fit. Finally, the output also includes comparisons of other fit indices (e.g., CFI, RMSEA). These are sometimes also used to compare the fit of several models. However, there are no clear, universal guidelines on how different these indices need to be before they indicate an improvement/worsening in model fit.</p>
 </section>
 <section id="how-to-specify-different-types-of-cfas" class="level2" data-number="3.8">
@@ -793,7 +793,7 @@ fit1 - fit2  1 0.027 -0.036 -0.052 0.02 30.923 27.216</code></pre>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="st">            visual ~~ a*speed</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="st">            textual ~~ a* speed"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To constrain parameters to be equal, we can give them the same label (this is different from the factorname that we use to specify/name latent factors). The general format for these equality constraints is:</p>
+<p>To constrain parameters to be equal, we can give them the same label (this is different from the factor name that we use to specify/name latent factors). The general format for these equality constraints is:</p>
 <p><code>factorname1 ~~ label*factorname2</code></p>
 <p>Or for constraining factor loadings to be equivalent:</p>
 <p><code>factorname1 =~ label*x1 + label*x2 + label*x3</code></p>
