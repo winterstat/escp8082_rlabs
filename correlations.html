@@ -146,6 +146,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="https://winterstat.github.io/escp8082_rlabs" rel="" target="">
  <span class="dropdown-text">ESCP 8082 Foundations of Measurement</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://winterstat.github.io/escp9710_rlabs" rel="" target="">
+ <span class="dropdown-text">ESCP 9710 Structural Equation Modeling</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -886,7 +890,7 @@ Observations: 10</code></pre>
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>health <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>health, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Poor"</span>, <span class="st">"Moderate"</span>,<span class="st">"Good"</span>), <span class="at">ordered =</span> T)</span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>QoLHealth<span class="sc">$</span>QoL <span class="ot">&lt;-</span> <span class="fu">factor</span>(QoLHealth<span class="sc">$</span>QoL, <span class="at">level =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">ordered =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The cross-table below shows the categorical nature of these variables, where each only takes on 3 values that may be ordinal but are not neccesarily equally spaced:</p>
+<p>The cross-table below shows the categorical nature of these variables, where each only takes on 3 values that may be ordinal but are not necessarily equally spaced:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(QoLHealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1321,7 +1325,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024, Sonja D. Winter</div>
+    <div class="nav-footer-center">Copyright 2025, Sonja D. Winter</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -144,6 +144,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="https://winterstat.github.io/escp8082_rlabs" rel="" target="">
  <span class="dropdown-text">ESCP 8082 Foundations of Measurement</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://winterstat.github.io/escp9710_rlabs" rel="" target="">
+ <span class="dropdown-text">ESCP 9710 Structural Equation Modeling</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -340,7 +344,8 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rio"</span>, <span class="st">"ggplot2"</span>, <span class="st">"psych"</span>,<span class="st">"correlation"</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"GPArotation"</span>, <span class="st">"lavaan"</span>, <span class="st">"MBESS"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"devtools"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"semTools"</span>, <span class="st">"lavaan.mi"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Running the code above will install:</p>
 <ol type="1">
@@ -351,8 +356,10 @@ Tip
 <li><code>GPArotation</code>: helps with exploratory factor analysis</li>
 <li><code>lavaan</code>: the main structural equation modeling package we will use to cover confirmatory factor analysis and measurement invariance.</li>
 <li><code>MBESS</code>: includes additional internal consistency measures</li>
-<li><code>devtools</code>: a package that helps us install packages that are available on GitHub.</li>
+<li><code>semTools</code>: a package that extends the functionality of the <code>lavaan</code> package</li>
+<li><code>lavaan.mi</code>: a package that is needed for <code>semTools</code> to work properly</li>
 </ol>
+<p>By using <code>dependencies = TRUE</code>, the above code will also install any packages that these 9 packages themselves depend on to work properly.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -365,13 +372,6 @@ Tip
 <div class="callout-body-container callout-body">
 <p>If you experience issues installing the <code>MBESS</code> package on macOS, you likely need to install a few additional tools. Go to this page to download and install those tools: <a href="https://mac.r-project.org/tools/">Compile Tools for macOS</a>.</p>
 </div>
-</div>
-<p>In addition to these main packages, R might also install additional packages that are needed for these 8 packages to work (so-called dependents).</p>
-<p>Next, you will install two packages, <code>semTools</code> and <code>lavaan.mi</code>, from GitHub. Due to a bug in the version of <code>semTools</code> on CRAN, we need to use the unofficial, development version of the package, which then requires the <code>lavaan.mi</code> package as well. You may need to uncomment (remove the #) the first line of code and execute both lines for this to work. In some cases, the download of the <code>semTools</code> package is too slow and results in an error because the R session times out.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># options(timeout = max(300, getOption("timeout")))</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"simsem/semTools/semTools"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"TDJorgensen/lavaan.mi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-used-in-the-r-labs" class="level2" data-number="1.3">
@@ -763,7 +763,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024, Sonja D. Winter</div>
+    <div class="nav-footer-center">Copyright 2025, Sonja D. Winter</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

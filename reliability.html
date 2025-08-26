@@ -146,6 +146,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="https://winterstat.github.io/escp8082_rlabs" rel="" target="">
  <span class="dropdown-text">ESCP 8082 Foundations of Measurement</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://winterstat.github.io/escp9710_rlabs" rel="" target="">
+ <span class="dropdown-text">ESCP 9710 Structural Equation Modeling</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -398,7 +402,7 @@ $interval.type
 <h2 data-number="5.5" class="anchored" data-anchor-id="cronbachs-alpha"><span class="header-section-number">5.5</span> Cronbach’s Alpha</h2>
 <p>We will use the <code>psych</code> package to compute Cronbach’s alpha.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha <span class="ot">&lt;-</span> <span class="fu">alpha</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attitude_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(attitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Number of categories should be increased  in order to count frequencies. </code></pre>
 </div>
@@ -977,7 +981,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024, Sonja D. Winter</div>
+    <div class="nav-footer-center">Copyright 2025, Sonja D. Winter</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
