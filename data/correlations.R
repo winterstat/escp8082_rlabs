@@ -11,17 +11,6 @@ library(correlation)
 
 tempice <- import(file = "data/tempice.csv")
 
-## getwd()
-
-## # Mac OS:
-## setwd("~/Dropbox/Work/Teaching/Measurement/R Labs")
-## 
-## # Windows:
-## setwd("C:/Users/sonja/Dropbox/Work/Teaching/Measurement/R Labs")
-## 
-## # Note: the folder that you are using for this class will very
-## # likely be in a different location.
-
 1 + 1
 
 5 / 3.21
